@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Exam 2 Tree methods
  * 
  * TODO:
- * @author Put your name here
+ * @author Cooper Anderson (andersc7)
  * 
  * Directions: Implement the methods below marked with "TODO" 
  * For details, see the .pdf/.docx files for instructions, both are included in this package
