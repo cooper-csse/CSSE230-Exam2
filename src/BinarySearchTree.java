@@ -30,8 +30,11 @@ public class BinarySearchTree {
 		return this.root != NULL_NODE ? this.root.countNodesWithOddLengthLabels() : 0;
 	}
 
+	/**
+	 * Remove all nodes from the tree that have a single child
+	 */
 	void deleteNodesWithOneChild() {
-		// TODO: Implement me!
+		if (this.root != NULL_NODE) this.root = this.root.deleteNodesWithOneChild();
 	}
 
 	ArrayList<String> getDirectionsToItem(String x) {
@@ -124,4 +127,17 @@ public class BinarySearchTree {
 			return (this.data.length() % 2) + (this.left != NULL_NODE ? this.left.countNodesWithOddLengthLabels() : 0) + (this.right != NULL_NODE ? this.right.countNodesWithOddLengthLabels() : 0);
 		}
 
-}
+		public BinaryNode deleteNodesWithOneChild() {
+			// Check to make sure both nodes are not NULL_NODE
+			if (this.left != this.right) {
+				// if right node is the only one that is NULL_NODE, return the left node
+				if (this.right == NULL_NODE)
+					return this.left.deleteNodesWithOneChild();
+				else if (this.left == NULL_NODE)
+					return this.right.deleteNodesWithOneChild();
+			}
+			// Recurse down the rest of the tree
+			if (this.left != NULL_NODE) this.left = this.left.deleteNodesWithOneChild();
+			if (this.right != NULL_NODE) this.right = this.right.deleteNodesWithOneChild();
+			return this;
+		}
