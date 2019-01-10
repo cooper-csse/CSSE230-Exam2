@@ -37,9 +37,12 @@ public class BinarySearchTree {
 		if (this.root != NULL_NODE) this.root = this.root.deleteNodesWithOneChild();
 	}
 
+	/**
+	 * @param x The item to which you are getting directions
+	 * @return A step by step list of how to get to the destination
+	 */
 	ArrayList<String> getDirectionsToItem(String x) {
-		// TODO: Implement me!
-		return new ArrayList<String>();
+		return this.root.getDirectionsToItem(x, new ArrayList<>());
 	}
 	
 	// --------------------------------------------
@@ -141,3 +144,24 @@ public class BinarySearchTree {
 			if (this.right != NULL_NODE) this.right = this.right.deleteNodesWithOneChild();
 			return this;
 		}
+
+		public ArrayList<String> getDirectionsToItem(String item, ArrayList<String> output) {
+			if (this == NULL_NODE) {
+				output.add(item + " not found");
+				return output;
+			}
+			int direction = item.compareTo(this.data);
+			if (direction == 0)
+				output.add(this.data + " found");
+			else if (direction > 0) {
+				output.add("right at " + this.data);
+				this.right.getDirectionsToItem(item, output);
+			} else {
+				output.add("left at " + this.data);
+				this.left.getDirectionsToItem(item, output);
+			}
+			return output;
+		}
+	}
+
+}
