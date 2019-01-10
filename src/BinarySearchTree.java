@@ -23,10 +23,12 @@ public class BinarySearchTree {
 
 	// --------------------------------------------
 
+	/**
+	 * @return The number of items that have odd-length labels
+	 */
 	int countNodesWithOddLengthLabels() {
-		// TODO: Implement me!
-		return -1;
-	} // countNodesWithOddLengthLabels
+		return this.root != NULL_NODE ? this.root.countNodesWithOddLengthLabels() : 0;
+	}
 
 	void deleteNodesWithOneChild() {
 		// TODO: Implement me!
@@ -115,6 +117,11 @@ public class BinarySearchTree {
 			String myInfo = indent + String.format("%s\n", this.data);
 			return myInfo + this.left.toIndentString(indent + "  ") + this.right.toIndentString(indent + "  ");
 		}
-	}
+
+		// --------------------------------------------
+
+		public int countNodesWithOddLengthLabels() {
+			return (this.data.length() % 2) + (this.left != NULL_NODE ? this.left.countNodesWithOddLengthLabels() : 0) + (this.right != NULL_NODE ? this.right.countNodesWithOddLengthLabels() : 0);
+		}
 
 }
